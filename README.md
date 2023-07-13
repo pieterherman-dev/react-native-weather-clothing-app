@@ -13,7 +13,7 @@ Embark on this sartorial journey by following these simple steps:
 1. Clone the repository to your local machine using `git clone https://github.com/pieterherman-dev/react-native-weather-clothing-app`.
 2. Go into the project directory with `cd react-native-weather-clothing-app`.
 3. Install the required packages using `npm install`.
-4. To start typ `npm start`.
+4. To start typ `npx react-native start`.
 
 ## 🎯 Usage
 
