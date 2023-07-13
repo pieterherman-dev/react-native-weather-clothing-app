@@ -51,10 +51,4 @@ export default StyleSheet.create({
     color: COLORS.textBold,
     textAlign: 'center',
   },
-  date: {
-    padding: 10,
-    fontSize: 16,
-    color: COLORS.textPrimary,
-    textAlign: 'center',
-  },
 });
