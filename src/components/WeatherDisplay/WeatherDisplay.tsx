@@ -1,12 +1,14 @@
 import React from 'react';
-import {View, Text, Image, ImageSourcePropType} from 'react-native';
+import {View, Text} from 'react-native';
 import {Card} from 'react-native-paper';
 import TimeAndDate from '../TimeAndDate/TimeAndDate';
 import {WeatherData} from '../../types';
 import LottieView from 'lottie-react-native';
 import {weatherIcons} from '../../constants/icons';
 import {iconSizes} from '../../constants/iconSizes';
+import LoadingIndicator from '../LoadingIndicator/LoadingIndicator';
 import styles from './WeatherDisplay.style';
+
 type WeatherDisplayProps = {
   weatherData: WeatherData;
 };
@@ -15,7 +17,7 @@ const WeatherDisplay = ({
   weatherData: {location, condition, temperature, icon},
 }: WeatherDisplayProps) => {
   if (!location || !condition || !temperature || !icon) {
-    return null; // or return a loading indicator or some fallback UI
+    return <LoadingIndicator />; 
   }
 
   return (

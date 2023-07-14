@@ -9,7 +9,7 @@ const HomeScreen = () => {
     useContext<WeatherContextType>(WeatherContext);
 
   useEffect(() => {
-    fetchWeatherData('Paris');
+    fetchWeatherData('Antwerpen');  // I will replace the location value later with the user's location when I implement the geolocation API
   }, [fetchWeatherData]);
 
   return (
