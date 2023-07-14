@@ -16,6 +16,8 @@ export const WeatherContext = createContext<WeatherContextType>({
   clothingSuggestion: null,
   setClothingSuggestion: () => {},
   fetchWeatherData: () => Promise.resolve(),
+  location: '',  // nieuwe regel
+  setLocation: () => {},  // nieuwe regel
 });
 
 type WeatherProviderProps = {
@@ -25,8 +27,9 @@ type WeatherProviderProps = {
 export const WeatherProvider = ({children}: WeatherProviderProps) => {
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
   const [clothingSuggestion, setClothingSuggestion] = useState<ClothingSuggestion | null>(null);
+  const [location, setLocation] = useState('Antwerpen'); // default location
 
-  const fetchWeatherData = useCallback(async (location: string) => {
+  const fetchWeatherData = useCallback(async () => {
     try {
       const fetchedWeatherData = await getWeatherData(location);
 
@@ -36,19 +39,16 @@ export const WeatherProvider = ({children}: WeatherProviderProps) => {
     } catch (error) {
       console.error('Error fetching weather data: ', error);
     }
-  }, []);
+  }, [location]);
 
   useEffect(() => {
-    const location = 'Antwerpen'; // I will replace the location value later with the user's location when I implement the geolocation API
-
-    // Fetch weather data when component first loads
-    fetchWeatherData(location);
+    fetchWeatherData();
 
     const intervalId = setInterval(() => {
-      fetchWeatherData(location); // fetch weather data every minute
+      fetchWeatherData(); 
     }, 60000); 
 
-    return () => clearInterval(intervalId); // stop fetching weather data if the component is unmounted
+    return () => clearInterval(intervalId);
   }, [fetchWeatherData]);
 
 
@@ -87,6 +87,8 @@ export const WeatherProvider = ({children}: WeatherProviderProps) => {
         clothingSuggestion,
         setClothingSuggestion,
         fetchWeatherData,
+        location,
+        setLocation
       }}>
       {children}
     </WeatherContext.Provider>
