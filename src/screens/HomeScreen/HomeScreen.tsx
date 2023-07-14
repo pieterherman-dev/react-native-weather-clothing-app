@@ -9,7 +9,7 @@ const HomeScreen = () => {
     useContext<WeatherContextType>(WeatherContext);
 
   useEffect(() => {
-    fetchWeatherData('Antwerpen');
+    fetchWeatherData('Paris');
   }, [fetchWeatherData]);
 
   return (

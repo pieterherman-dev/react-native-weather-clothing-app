@@ -51,4 +51,8 @@ export default StyleSheet.create({
     color: COLORS.textBold,
     textAlign: 'center',
   },
+  animation: {
+    width: 100,
+    height: 100,
+  },
 });

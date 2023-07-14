@@ -2,21 +2,13 @@ import React from 'react';
 import {View, Text, Image, ImageSourcePropType} from 'react-native';
 import {Card} from 'react-native-paper';
 import TimeAndDate from '../TimeAndDate/TimeAndDate';
-import {IconName, WeatherData} from '../../types';
+import {WeatherData} from '../../types';
+import LottieView from 'lottie-react-native';
+import {weatherIcons} from '../../constants/icons';
+import {iconSizes} from '../../constants/iconSizes';
 import styles from './WeatherDisplay.style';
-
 type WeatherDisplayProps = {
   weatherData: WeatherData;
-};
-
-const weatherIcons: Record<IconName, ImageSourcePropType> = {
-  Rainy: require('../../assets/icons/weather/rainy.png'),
-  Cloudy: require('../../assets/icons/weather/partlycloudy.png'),
-  Sunny: require('../../assets/icons/weather/sunny.png'),
-  Snowy: require('../../assets/icons/weather/snowy.png'),
-  Thunderstorm: require('../../assets/icons/weather/rainthunder.png'),
-  Foggy: require('../../assets/icons/weather/partlycloudy.png'),
-  Default: require('../../assets/icons/weather/partlycloudy.png'),
 };
 
 const WeatherDisplay = ({
@@ -31,7 +23,15 @@ const WeatherDisplay = ({
       <Text style={styles.location}>{location}</Text>
       <TimeAndDate />
       <View style={styles.iconContainer}>
-        <Image source={weatherIcons[icon]} />
+        <LottieView
+          source={weatherIcons[icon]}
+          autoPlay
+          loop
+          style={{
+            width: iconSizes[icon].width,
+            height: iconSizes[icon].height,
+          }}
+        />
       </View>
       <Card.Content>
         <Text style={styles.temperature}>{temperature}</Text>
