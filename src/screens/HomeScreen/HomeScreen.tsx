@@ -1,16 +1,32 @@
-import React, {useContext, useEffect} from 'react';
+import React, {useContext, useEffect, useLayoutEffect} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {WeatherDisplay, ClothingSuggestion} from '../../components';
 import {WeatherContext} from '../../contexts/WeatherContext';
 import {WeatherContextType} from '../../types';
 
+import { Button } from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+
 const HomeScreen = () => {
-  const {weatherData, fetchWeatherData, clothingSuggestion} =
+  const navigation = useNavigation();
+  const { weatherData, fetchWeatherData, clothingSuggestion } =
     useContext<WeatherContextType>(WeatherContext);
 
   useEffect(() => {
-    fetchWeatherData('Antwerpen');  // I will replace the location value later with the user's location when I implement the geolocation API
+    fetchWeatherData('Paris');
   }, [fetchWeatherData]);
+
+  useLayoutEffect(() => {
+    navigation.setOptions({
+      headerRight: () => (
+        <Button
+          onPress={() => navigation.navigate('Search')}
+          title="Search"
+          color="#fff"
+        />
+      ),
+    });
+  }, [navigation]);
 
   return (
     <View style={styles.container}>
@@ -21,6 +37,7 @@ const HomeScreen = () => {
     </View>
   );
 };
+
 
 const styles = StyleSheet.create({
   container: {

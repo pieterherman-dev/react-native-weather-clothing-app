@@ -17,7 +17,10 @@ export type WeatherContextType = {
   clothingSuggestion: ClothingSuggestion | null;
   setClothingSuggestion: (value: ClothingSuggestion | null) => void;
   fetchWeatherData: (location: string) => Promise<void>;
+  location: string;   
+  setLocation: (value: string) => void;
 };
+
 
 export type IconName =
   | 'Rainy'

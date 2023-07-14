@@ -10,7 +10,12 @@ const MainNavigator = () => {
       <Stack.Screen
         name="Home"
         component={HomeScreen}
-        options={{title: 'Welcome'}}
+        options={{
+          title: '',
+          headerTransparent: true,
+          headerShadowVisible: false,
+          headerTintColor: '#fff',
+        }}
       />
       <Stack.Screen
         name="Search"

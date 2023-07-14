@@ -7,8 +7,14 @@ const TimeAndDate: React.FC = () => {
   const [dateAndTime, setDateAndTime] = useState<string>('');
 
   useEffect(() => {
-    const date = new Date();
-    setDateAndTime(`${getFormattedDate(date)} ${getFormattedTime(date)}`);
+    const updateTimeAndDate = () => {
+      const date = new Date();
+      setDateAndTime(`${getFormattedDate(date)} ${getFormattedTime(date)}`);
+    };
+
+    const interval = setInterval(updateTimeAndDate, 1000); // Update every second
+
+    return () => clearInterval(interval); // Clean up on unmount
   }, []);
 
   return <Text style={styles.date}>{dateAndTime}</Text>;
